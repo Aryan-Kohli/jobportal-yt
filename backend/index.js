@@ -18,7 +18,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 const corsOptions = {
     // origin:'http://localhost:5173',
-    origin:'*',
+    origin:'https://job-portal-mine.netlify.app/',
     credentials:true
 }
 
