@@ -51,16 +51,13 @@ const PostJob = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await axios.post(
-        `${JOB_API_END_POINT}/post`,
-        { input, token: Cookies.get("token") },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
-      );
+      const res = await axios.post(`${JOB_API_END_POINT}/post`, input, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${Cookies.get("token")}`,
+        },
+        withCredentials: true,
+      });
       if (res.data.success) {
         toast.success(res.data.message);
         navigate("/admin/jobs");

@@ -15,9 +15,14 @@ const Applicants = () => {
   useEffect(() => {
     const fetchAllApplicants = async () => {
       try {
-        const res = await axios.post(
+        const res = await axios.get(
           `${APPLICATION_API_END_POINT}/${params.id}/applicants`,
-          { withCredentials: true, token: Cookies.get("token") }
+          { withCredentials: true },
+          {
+            headers: {
+              Authorization: `Bearer ${Cookies.get("token")}`,
+            },
+          }
         );
         dispatch(setAllApplicants(res.data.job));
       } catch (error) {

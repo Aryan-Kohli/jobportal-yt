@@ -54,10 +54,11 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
       setLoading(true);
       const res = await axios.post(
         `${USER_API_END_POINT}/profile/update`,
-        { formData, token: Cookies.get("token") },
+        formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
           },
           withCredentials: true,
         }

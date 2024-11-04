@@ -23,9 +23,14 @@ const JobDescription = () => {
 
   const applyJobHandler = async () => {
     try {
-      const res = await axios.post(
+      const res = await axios.get(
         `${APPLICATION_API_END_POINT}/apply/${jobId}`,
-        { withCredentials: true, token: Cookies.get("token") }
+        { withCredentials: true },
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get("token")}`,
+          },
+        }
       );
 
       if (res.data.success) {
@@ -46,10 +51,17 @@ const JobDescription = () => {
   useEffect(() => {
     const fetchSingleJob = async () => {
       try {
-        const res = await axios.post(`${JOB_API_END_POINT}/get/${jobId}`, {
-          withCredentials: true,
-          token: Cookies.get("token"),
-        });
+        const res = await axios.get(
+          `${JOB_API_END_POINT}/get/${jobId}`,
+          {
+            withCredentials: true,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${Cookies.get("token")}`,
+            },
+          }
+        );
         if (res.data.success) {
           dispatch(setSingleJob(res.data.job));
           setIsApplied(

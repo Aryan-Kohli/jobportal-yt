@@ -48,12 +48,13 @@ const CompanySetup = () => {
       setLoading(true);
       const token = Cookies.get("token");
       console.log("token is", token);
-      const res = await axios.post(
+      const res = await axios.put(
         `${COMPANY_API_END_POINT}/update/${params.id}`,
-        { formData, token: token },
+        formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
           },
           withCredentials: true,
         }
