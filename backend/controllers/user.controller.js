@@ -113,14 +113,14 @@ export const logout = async (req, res) => {
         //     message: "Logged out successfully.",
         //     success: true
         // })
-        return res.status(200).json("Logged out successfully.");
+        return res.status(200).json({message :"Logged out successfully.", success:true});
     } catch (error) {
         console.log(error);
     }
 }
 export const updateProfile = async (req, res) => {
     try {
-        const { fullname, email, phoneNumber, bio, skills } = req.body;
+        const { fullname, email, phoneNumber, bio, skills } = req.body.formData;
         
         const file = req.file;
         // cloudinary ayega idhar
