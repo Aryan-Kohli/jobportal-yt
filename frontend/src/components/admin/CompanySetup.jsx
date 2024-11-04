@@ -48,7 +48,7 @@ const CompanySetup = () => {
       setLoading(true);
       const token = Cookies.get("token");
       console.log("token is", token);
-      const res = await axios.put(
+      const res = await axios.post(
         `${COMPANY_API_END_POINT}/update/${params.id}`,
         { formData, token: token },
         {
