@@ -16,9 +16,12 @@ const CompanyCreate = () => {
   const dispatch = useDispatch();
   const registerNewCompany = async () => {
     try {
+      const token = Cookies.get("token");
+      console.log("token is", token);
+
       const res = await axios.post(
         `${COMPANY_API_END_POINT}/register`,
-        { companyName, token: Cookies.get("token") },
+        { companyName, token: token },
         {
           headers: {
             "Content-Type": "application/json",
