@@ -2,9 +2,9 @@ import React from "react";
 import Navbar from "./shared/Navbar";
 
 const videoLinks = [
-  "https://youtu.be/W8B0KWmv_-Q?si=QnzM98_OO-04Gvtb",
-  "https://youtu.be/7ax4Tb5G1P4?si=EbU0ysyJQnwH8MU4",
-  "https://youtu.be/D74vLgMYOxM?si=RaB4fXfkeDiaW4-0",
+  "https://www.youtube.com/embed/W8B0KWmv_-Q?si=f0gkPkOjYjfhJpdQ",
+  "https://www.youtube.com/embed/7ax4Tb5G1P4?si=SQMOgLrF3hTP_zZC",
+  "https://www.youtube.com/embed/D74vLgMYOxM?si=BGLbiwULOTQKqoOc",
   // Add more video links as needed
 ];
 
@@ -41,8 +41,9 @@ export default function Podcast() {
           {videoLinks.map((link, index) => (
             <iframe
               key={index}
-              width="75%" // Reduced width
-              height="250" // Increased height
+              width="100%" // Reduced width
+              // height="200%" // Reduced width
+              height="300" // Increased height
               src={link}
               title={`YouTube video ${index + 1}`}
               frameBorder="0"
