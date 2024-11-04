@@ -49,7 +49,7 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
     try {
         const { email, password, role } = req.body;
-        
+        console.log(req.body);
         if (!email || !password || !role) {
             return res.status(400).json({
                 message: "Something is missing",
@@ -92,21 +92,28 @@ export const login = async (req, res) => {
             profile: user.profile
         }
 
-        return res.status(200).cookie("token", token, { maxAge: 1 * 24 * 60 * 60 * 1000, httpsOnly: true, sameSite: 'strict' }).json({
+        // return res.status(200).cookie("token", token, { maxAge: 1 * 24 * 60 * 60 * 1000, httpsOnly: true, sameSite: 'strict' }).json({
+        //     message: `Welcome back ${user.fullname}`,
+        //     user,
+        //     success: true
+        // })
+        return res.status(200).json({
             message: `Welcome back ${user.fullname}`,
             user,
-            success: true
-        })
+            success: true,
+            token
+        });
     } catch (error) {
         console.log(error);
     }
 }
 export const logout = async (req, res) => {
     try {
-        return res.status(200).cookie("token", "", { maxAge: 0 }).json({
-            message: "Logged out successfully.",
-            success: true
-        })
+        // return res.status(200).cookie("token", "", { maxAge: 0 }).json({
+        //     message: "Logged out successfully.",
+        //     success: true
+        // })
+        return res.status(200).json("Logged out successfully.");
     } catch (error) {
         console.log(error);
     }
