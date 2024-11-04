@@ -1,12 +1,23 @@
 import React from "react";
 import Navbar from "./shared/Navbar";
 
-const videoLinks = [
-  "https://www.youtube.com/embed/W8B0KWmv_-Q?si=f0gkPkOjYjfhJpdQ",
-  "https://www.youtube.com/embed/7ax4Tb5G1P4?si=SQMOgLrF3hTP_zZC",
-  "https://www.youtube.com/embed/D74vLgMYOxM?si=BGLbiwULOTQKqoOc",
-  // Add more video links as needed
-];
+const videoData = {
+  "Time Management": [
+    "https://www.youtube.com/embed/W8B0KWmv_-Q?si=f0gkPkOjYjfhJpdQ",
+    "https://www.youtube.com/embed/7ax4Tb5G1P4?si=SQMOgLrF3hTP_zZC",
+    "https://www.youtube.com/embed/D74vLgMYOxM?si=BGLbiwULOTQKqoOc",
+  ],
+  "Monetary and Finance": [
+    "https://www.youtube.com/embed/3wBEUuV7BYg?si=CP7BnADPsAUkYpN2",
+    "https://www.youtube.com/embed/Cda-fUJ-GjE?si=Dg30VYMaKFPtPzBA",
+    "https://www.youtube.com/embed/7TWKKww-F30?si=eIzbVFwGGLCe_KYl",
+  ],
+  Communication: [
+    "https://www.youtube.com/embed/6-shbSFc48E?si=EzDwUX4q7haoxokZ",
+    "https://www.youtube.com/embed/HAnw168huqA?si=c7sHW2mvW6kBQq0l",
+    "https://www.youtube.com/embed/k1TqbGSQZVE?si=AgekfU78JGjbNVO3",
+  ],
+};
 
 export default function Podcast() {
   return (
@@ -17,42 +28,40 @@ export default function Podcast() {
           backgroundColor: "white",
           color: "black",
           padding: "20px 15px",
-          borderRadius: "10 10 5 12",
         }}
       >
-        <div className="relative">
-          <h1 className="text-3xl font-bold  mb-4  p-4 rounded">
-            TIME MANAGEMENT
-          </h1>
-          {/* <svg
-          className="absolute left-0 right-0 -bottom-4"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1440 320"
-          preserveAspectRatio="none"
-        >
-          <path
-            fill="#E6E6FA" // Light purple for the wavy border
-            d="M0,288L30,250C60,213,120,139,180,128C240,117,300,171,360,202.7C420,234,480,256,540,245.3C600,235,660,181,720,160C780,139,840,149,900,160C960,171,1020,181,1080,197.3C1140,213,1200,235,1260,213.3C1320,192,1380,128,1410,96L1440,64L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320H0Z"
-          />
-        </svg> */}
-        </div>
-
-        <div className="grid grid-cols-2 gap-4 mt-4">
-          {videoLinks.map((link, index) => (
-            <iframe
-              key={index}
-              width="100%" // Reduced width
-              // height="200%" // Reduced width
-              height="300" // Increased height
-              src={link}
-              title={`YouTube video ${index + 1}`}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              style={{ margin: "0 auto" }} // Center the videos
-            ></iframe>
-          ))}
-        </div>
+        {Object.entries(videoData).map(([title, links], idx) => (
+          <div
+            key={idx}
+            className="mb-8"
+            style={{
+              borderRadius: "10px",
+              padding: "20px",
+              backgroundColor: "#f4f4ff",
+            }}
+          >
+            <div className="relative mb-6">
+              <h1 className="text-3xl font-bold text-gray-700 bg-purple-100 p-4 rounded-lg">
+                {title.toUpperCase()}
+              </h1>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              {links.map((link, index) => (
+                <iframe
+                  key={index}
+                  width="100%"
+                  height="300"
+                  src={link}
+                  title={`${title} Video ${index + 1}`}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  style={{ margin: "0 auto" }}
+                ></iframe>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </>
   );
