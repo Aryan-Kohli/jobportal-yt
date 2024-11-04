@@ -15,7 +15,7 @@ const Applicants = () => {
   useEffect(() => {
     const fetchAllApplicants = async () => {
       try {
-        const res = await axios.get(
+        const res = await axios.post(
           `${APPLICATION_API_END_POINT}/${params.id}/applicants`,
           { withCredentials: true, token: Cookies.get("token") }
         );
