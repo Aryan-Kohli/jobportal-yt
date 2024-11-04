@@ -13,8 +13,8 @@ const useGetAllJobs = () => {
       try {
         const res = await axios.get(
           `${JOB_API_END_POINT}/get?keyword=${searchedQuery}`,
-          { withCredentials: true },
           {
+            withCredentials: true,
             headers: {
               Authorization: `Bearer ${Cookies.get("token")}`,
             },

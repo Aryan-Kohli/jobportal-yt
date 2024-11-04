@@ -13,8 +13,8 @@ const useGetCompanyById = (companyId) => {
       try {
         const res = await axios.get(
           `${COMPANY_API_END_POINT}/get/${companyId}`,
-          { withCredentials: true },
           {
+            withCredentials: true,
             headers: { Authorization: `Bearer ${Cookies.get("token")}` },
           }
         );

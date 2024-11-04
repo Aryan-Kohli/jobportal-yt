@@ -52,11 +52,11 @@ const CompanySetup = () => {
         `${COMPANY_API_END_POINT}/update/${params.id}`,
         formData,
         {
+          withCredentials: true,
           headers: {
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`,
           },
-          withCredentials: true,
         }
       );
       if (res.data.success) {

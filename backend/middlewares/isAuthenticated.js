@@ -5,8 +5,8 @@ const isAuthenticated = async (req, res, next) => {
         let token = req.body.token;
 
         console.log("headers : ", req.headers);
-        if(!token && req.headers.Authorization){
-            token = req.headers.Authorization.split(" ")[1];
+        if(!token && req.headers.authorization){
+            token = req.headers.authorization.split(" ")[1];
         }
         if(!token && req.headers.cookie){
             token = req.headers.cookie.split("=")[1];

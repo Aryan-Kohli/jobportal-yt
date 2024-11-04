@@ -56,11 +56,11 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
         `${USER_API_END_POINT}/profile/update`,
         formData,
         {
+          withCredentials: true,
           headers: {
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`,
           },
-          withCredentials: true,
         }
       );
       if (res.data.success) {
