@@ -21,7 +21,7 @@ const Navbar = () => {
       const res = await axios.get(`${USER_API_END_POINT}/logout`, {
         withCredentials: true,
       });
-      if (res.data.success) {
+      if (res.status == 200) {
         dispatch(setUser(null));
         navigate("/");
         toast.success(res.data.message);
