@@ -23,21 +23,24 @@ const fitlerData = [
     fitlerType: "salary",
     array: ["1-5LPA", "5-10LPA", "10-15LPA", "15+LPA"],
   },
-  //   {
-  //     fitlerType: "Experience (Months)",
-  //     array: ["1-5LPA", "5-10LPA", "10-15LPA", "15+LPA"],
-  //   },
 ];
 
 const FilterCard = () => {
   const [selectedValue, setSelectedValue] = useState("");
   const dispatch = useDispatch();
+
   const changeHandler = (value) => {
     setSelectedValue(value);
   };
+
+  const resetFilters = () => {
+    setSelectedValue("");
+  };
+
   useEffect(() => {
     dispatch(setSearchedQuery(selectedValue));
   }, [selectedValue]);
+
   return (
     <div className="w-full bg-white p-3 rounded-md">
       <h1 className="font-bold text-lg">Filter Jobs</h1>
@@ -58,6 +61,12 @@ const FilterCard = () => {
           </div>
         ))}
       </RadioGroup>
+      <button
+        onClick={resetFilters}
+        className="mt-4 w-full py-2 bg-gray-200 rounded-md text-black font-bold"
+      >
+        Clear All Filters
+      </button>
     </div>
   );
 };
