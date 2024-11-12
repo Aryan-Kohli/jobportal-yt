@@ -41,6 +41,15 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    if (
+      !input.fullname ||
+      !input.email ||
+      !input.phoneNumber ||
+      !input.bio ||
+      !input.skills
+    ) {
+      return toast.error("All fields are required");
+    }
     const formData = new FormData();
     formData.append("fullname", input.fullname);
     formData.append("email", input.email);

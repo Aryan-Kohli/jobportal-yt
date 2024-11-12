@@ -33,6 +33,16 @@ const Signup = () => {
   };
   const submitHandler = async (e) => {
     e.preventDefault();
+    if (
+      !input.fullname ||
+      !input.email ||
+      !input.phoneNumber ||
+      !input.password ||
+      !input.role
+    ) {
+      return toast.error("All fields are required");
+    }
+
     const formData = new FormData(); //formdata object
     formData.append("fullname", input.fullname);
     formData.append("email", input.email);
@@ -41,8 +51,9 @@ const Signup = () => {
     formData.append("role", input.role);
     if (input.file) {
       formData.append("file", input.file);
+    } else {
+      return toast.error("Profile picture is required");
     }
-
     try {
       dispatch(setLoading(true));
       const res = await axios.post(`${USER_API_END_POINT}/register`, formData, {

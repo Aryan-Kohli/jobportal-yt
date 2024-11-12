@@ -28,6 +28,9 @@ const Login = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    if (!input.email || !input.password || !input.role) {
+      return toast.error("All fields are required");
+    }
     try {
       dispatch(setLoading(true));
       const res = await axios.post(`${USER_API_END_POINT}/login`, input, {

@@ -36,6 +36,14 @@ const CompanySetup = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    if (
+      !input.name ||
+      !input.description ||
+      !input.website ||
+      !input.location
+    ) {
+      return toast.error("All fields are required");
+    }
     const formData = new FormData();
     formData.append("name", input.name);
     formData.append("description", input.description);
@@ -43,6 +51,8 @@ const CompanySetup = () => {
     formData.append("location", input.location);
     if (input.file) {
       formData.append("file", input.file);
+    } else {
+      return toast.error("Logo is required");
     }
     try {
       setLoading(true);
@@ -114,6 +124,7 @@ const CompanySetup = () => {
                 name="description"
                 value={input.description}
                 onChange={changeEventHandler}
+                placeholder="Company description"
               />
             </div>
             <div>
@@ -123,6 +134,7 @@ const CompanySetup = () => {
                 name="website"
                 value={input.website}
                 onChange={changeEventHandler}
+                placeholder="www.company.com"
               />
             </div>
             <div>
@@ -132,6 +144,7 @@ const CompanySetup = () => {
                 name="location"
                 value={input.location}
                 onChange={changeEventHandler}
+                placeholder="Delhi, India"
               />
             </div>
             <div>

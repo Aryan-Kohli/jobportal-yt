@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Button } from "../ui/button";
 import { Avatar, AvatarImage } from "../ui/avatar";
@@ -9,11 +9,13 @@ import axios from "axios";
 import { USER_API_END_POINT } from "@/utils/constant";
 import { setUser } from "@/redux/authSlice";
 import { toast } from "sonner";
+import { ChevronDown } from "lucide-react";
 import Cookies from "js-cookie";
 const Navbar = () => {
   const { user } = useSelector((store) => store.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   const logoutHandler = async () => {
     try {
@@ -35,10 +37,15 @@ const Navbar = () => {
     <div className="bg-white">
       <div className="flex items-center justify-between mx-auto max-w-7xl h-16">
         <div>
-          <h1 className="text-2xl font-bold">
-            Career<span className="text-[#F83002]">Go</span>
-          </h1>
+          <Link to="/">
+            <img
+              src="/logo.png"
+              alt="CareerGo Logo"
+              style={{ height: "80px", marginTop: "10px" }}
+            />{" "}
+          </Link>
         </div>
+
         <div className="flex items-center gap-12">
           <ul className="flex font-medium items-center gap-5">
             {user && user.role === "recruiter" ? (
@@ -61,8 +68,47 @@ const Navbar = () => {
                 <li>
                   <Link to="/browse">Browse</Link>
                 </li>
-                <li>
-                  <Link to="/podcast">Podcast</Link>
+                <li
+                  onMouseEnter={() => setDropdownOpen(true)}
+                  onMouseLeave={() => setDropdownOpen(false)}
+                  style={{ position: "relative", margin: "0 10px" }}
+                >
+                  <Link
+                    to="/podcast"
+                    style={{ display: "flex", alignItems: "center" }}
+                  >
+                    Podcast{" "}
+                    <ChevronDown size={16} style={{ marginLeft: "5px" }} />{" "}
+                  </Link>
+                  {isDropdownOpen && (
+                    <ul
+                      style={{
+                        position: "absolute",
+                        top: "100%",
+                        left: "0",
+                        backgroundColor: "white",
+                        padding: "10px",
+                        borderRadius: "5px",
+                        boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+                        zIndex: 10,
+                        width: "200px",
+                      }}
+                    >
+                      <li style={{ padding: "5px 0" }}>
+                        <Link to="/podcast#Time-Management">
+                          Time Management
+                        </Link>
+                      </li>
+                      <li style={{ padding: "5px 0" }}>
+                        <Link to="/podcast#Monetary-and-Finance">
+                          Monetary and Finance
+                        </Link>
+                      </li>
+                      <li style={{ padding: "5px 0" }}>
+                        <Link to="/podcast#Communication">Communication</Link>
+                      </li>
+                    </ul>
+                  )}
                 </li>
               </>
             )}

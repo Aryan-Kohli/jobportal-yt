@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "./shared/Navbar";
 
 const videoData = {
@@ -20,6 +20,13 @@ const videoData = {
 };
 
 export default function Podcast() {
+  useEffect(() => {
+    const hash = window.location.hash.substring(1);
+    if (hash) {
+      document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
+
   return (
     <>
       <Navbar />
@@ -33,6 +40,7 @@ export default function Podcast() {
         {Object.entries(videoData).map(([title, links], idx) => (
           <div
             key={idx}
+            id={title.replace(/ /g, "-")}
             className="mb-8"
             style={{
               borderRadius: "10px",

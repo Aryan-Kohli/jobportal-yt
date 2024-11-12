@@ -29,7 +29,7 @@ const PostJob = () => {
     location: "",
     jobType: "",
     experience: "",
-    position: 0,
+    position: 1,
     companyId: "",
   });
   const [loading, setLoading] = useState(false);
@@ -49,6 +49,19 @@ const PostJob = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    if (
+      !input.title ||
+      !input.description ||
+      !input.requirements ||
+      !input.salary ||
+      !input.location ||
+      !input.jobType ||
+      !input.experience ||
+      !input.position ||
+      !input.companyId
+    ) {
+      return toast.error("All fields are required");
+    }
     try {
       setLoading(true);
       const res = await axios.post(`${JOB_API_END_POINT}/post`, input, {
@@ -86,6 +99,7 @@ const PostJob = () => {
                 value={input.title}
                 onChange={changeEventHandler}
                 className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                placeholder="Frontend Developer"
               />
             </div>
             <div>
@@ -96,6 +110,7 @@ const PostJob = () => {
                 value={input.description}
                 onChange={changeEventHandler}
                 className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                placeholder="Job Description"
               />
             </div>
             <div>
@@ -106,18 +121,27 @@ const PostJob = () => {
                 value={input.requirements}
                 onChange={changeEventHandler}
                 className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                placeholder="Job Requirements"
               />
             </div>
-            <div>
-              <Label>Salary</Label>
-              <Input
-                type="text"
+            <div className="flex flex-col my-2">
+              <Label className="text-sm font-semibold mb-1">Salary (LPA)</Label>
+              <select
                 name="salary"
                 value={input.salary}
                 onChange={changeEventHandler}
-                className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
-              />
+                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                <option value="" disabled>
+                  Select Salary Range
+                </option>
+                <option value="1-5LPA">1-5 LPA</option>
+                <option value="5-10LPA">5-10 LPA</option>
+                <option value="10-15LPA">10-15 LPA</option>
+                <option value="15+LPA">15+ LPA</option>
+              </select>
             </div>
+
             <div>
               <Label>Location</Label>
               <Input
@@ -126,6 +150,7 @@ const PostJob = () => {
                 value={input.location}
                 onChange={changeEventHandler}
                 className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                placeholder="Delhi NCR , Bangalore , Hyderabad"
               />
             </div>
             <div>
@@ -136,16 +161,18 @@ const PostJob = () => {
                 value={input.jobType}
                 onChange={changeEventHandler}
                 className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                placeholder="Full Time"
               />
             </div>
             <div>
-              <Label>Experience Level</Label>
+              <Label>Experience Level (Months)</Label>
               <Input
                 type="text"
                 name="experience"
                 value={input.experience}
                 onChange={changeEventHandler}
                 className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                placeholder="60"
               />
             </div>
             <div>
@@ -156,6 +183,8 @@ const PostJob = () => {
                 value={input.position}
                 onChange={changeEventHandler}
                 className="focus-visible:ring-offset-0 focus-visible:ring-0 my-1"
+                placeholder="1"
+                min="1"
               />
             </div>
             {companies.length > 0 && (
@@ -167,7 +196,10 @@ const PostJob = () => {
                   <SelectGroup>
                     {companies.map((company) => {
                       return (
-                        <SelectItem value={company?.name?.toLowerCase()}>
+                        <SelectItem
+                          value={company?.name?.toLowerCase()}
+                          key={company.name}
+                        >
                           {company.name}
                         </SelectItem>
                       );

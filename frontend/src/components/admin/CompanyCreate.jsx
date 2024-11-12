@@ -12,9 +12,12 @@ import { setSingleCompany } from "@/redux/companySlice";
 import Cookies from "js-cookie";
 const CompanyCreate = () => {
   const navigate = useNavigate();
-  const [companyName, setCompanyName] = useState();
+  const [companyName, setCompanyName] = useState("");
   const dispatch = useDispatch();
   const registerNewCompany = async () => {
+    if (!companyName) {
+      return toast.error("Company name is required");
+    }
     try {
       const token = Cookies.get("token");
       console.log("token is", token);
