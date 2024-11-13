@@ -5,6 +5,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
+  DialogClose,
 } from "./ui/dialog";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
@@ -16,6 +17,8 @@ import { USER_API_END_POINT } from "@/utils/constant";
 import { setUser } from "@/redux/authSlice";
 import { toast } from "sonner";
 import Cookies from "js-cookie";
+import { Close } from "@radix-ui/react-dialog";
+
 const UpdateProfileDialog = ({ open, setOpen }) => {
   const [loading, setLoading] = useState(false);
   const { user } = useSelector((store) => store.auth);
@@ -68,7 +71,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
           withCredentials: true,
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${Cookies.get("token")}`,
           },
         }
       );
@@ -83,18 +86,18 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
       setLoading(false);
     }
     setOpen(false);
-    console.log(input);
   };
 
   return (
     <div>
-      <Dialog open={open}>
-        <DialogContent
-          className="sm:max-w-[425px]"
-          onInteractOutside={() => setOpen(false)}
-        >
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle>Update Profile</DialogTitle>
+            <DialogClose className="absolute right-4 top-4 rounded-full">
+              <span className="sr-only">Close</span>
+              <Close className="h-4 w-4" />
+            </DialogClose>
           </DialogHeader>
           <form onSubmit={submitHandler}>
             <div className="grid gap-4 py-4">
@@ -104,7 +107,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
                 </Label>
                 <Input
                   id="name"
-                  name="name"
+                  name="fullname"
                   type="text"
                   value={input.fullname}
                   onChange={changeEventHandler}
@@ -130,7 +133,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
                 </Label>
                 <Input
                   id="number"
-                  name="number"
+                  name="phoneNumber"
                   value={input.phoneNumber}
                   onChange={changeEventHandler}
                   className="col-span-3"
@@ -177,8 +180,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
             <DialogFooter>
               {loading ? (
                 <Button className="w-full my-4">
-                  {" "}
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait{" "}
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait
                 </Button>
               ) : (
                 <Button type="submit" className="w-full my-4">
