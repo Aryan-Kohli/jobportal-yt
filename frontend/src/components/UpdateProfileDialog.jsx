@@ -174,7 +174,7 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
                 <Label htmlFor="file" className="text-right">
                   Resume
                 </Label>
-                <div className="col-span-3 flex items-center gap-2">
+                <div className="col-span-3 flex  items-center gap-2">
                   {input.file ? (
                     <a
                       href={input.file}
@@ -182,7 +182,9 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
                       rel="noopener noreferrer"
                       className="text-blue-600 hover:underline"
                     >
-                      {resumeDisplayName}
+                      {resumeDisplayName.length > 20
+                        ? `${resumeDisplayName.substring(0, 20)}...`
+                        : resumeDisplayName}
                     </a>
                   ) : (
                     <span className="text-gray-500"> {resumeDisplayName}</span>
