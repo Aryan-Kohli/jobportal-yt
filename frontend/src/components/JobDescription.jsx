@@ -22,6 +22,10 @@ const JobDescription = () => {
   const dispatch = useDispatch();
 
   const applyJobHandler = async () => {
+    if (!user.profile.resume || user.profile.resume === "") {
+      toast.error("Please upload your resume first");
+      return;
+    }
     try {
       const res = await axios.get(
         `${APPLICATION_API_END_POINT}/apply/${jobId}`,
@@ -85,7 +89,7 @@ const JobDescription = () => {
               {singleJob?.jobType}
             </Badge>
             <Badge className={"text-[#7209b7] font-bold"} variant="ghost">
-              {singleJob?.salary}LPA
+              {singleJob?.salary}
             </Badge>
           </div>
         </div>
