@@ -61,6 +61,8 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
     formData.append("skills", input.skills);
     if (input.file) {
       formData.append("file", input.file);
+    } else {
+      return toast.error("Please upload a resume");
     }
     try {
       setLoading(true);
