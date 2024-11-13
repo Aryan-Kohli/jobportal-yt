@@ -33,15 +33,20 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
   });
   const dispatch = useDispatch();
 
+  const [resumeDisplayName, setResumeDisplayName] = useState(
+    user?.profile?.resumeOriginalName || "No file chosen"
+  );
   const changeEventHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
   const fileChangeHandler = (e) => {
     const file = e.target.files?.[0];
-    setInput({ ...input, file });
+    if (file) {
+      setInput({ ...input, file });
+      setResumeDisplayName(file.name); // Update to the new file name
+    }
   };
-
   const submitHandler = async (e) => {
     e.preventDefault();
     if (
@@ -169,14 +174,34 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
                 <Label htmlFor="file" className="text-right">
                   Resume
                 </Label>
-                <Input
-                  id="file"
-                  name="file"
-                  type="file"
-                  accept="application/pdf"
-                  onChange={fileChangeHandler}
-                  className="col-span-3"
-                />
+                <div className="col-span-3 flex items-center gap-2">
+                  {input.file ? (
+                    <a
+                      href={input.file}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:underline"
+                    >
+                      {resumeDisplayName}
+                    </a>
+                  ) : (
+                    <span className="text-gray-500"> {resumeDisplayName}</span>
+                  )}
+                  <Input
+                    id="file"
+                    name="file"
+                    type="file"
+                    accept="application/pdf"
+                    onChange={fileChangeHandler}
+                    className="hidden" // Hide the file input initially
+                  />
+                  <Button
+                    onClick={() => document.getElementById("file").click()}
+                    type="button"
+                  >
+                    {input.file ? "Change File" : "Upload File"}
+                  </Button>
+                </div>
               </div>
             </div>
             <DialogFooter>
