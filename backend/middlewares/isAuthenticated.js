@@ -4,15 +4,15 @@ const isAuthenticated = async (req, res, next) => {
     try {
         let token = req.body.token;
 
-        console.log("headers : ", req.headers);
+        // console.log("headers : ", req.headers);
         if(!token && req.headers.authorization){
             token = req.headers.authorization.split(" ")[1];
         }
         if(!token && req.headers.cookie){
             token = req.headers.cookie.split("=")[1];
-            console.log("cookie : ", req.headers.cookie);
+            // console.log("cookie : ", req.headers.cookie);
         }
-        console.log(token);
+        // console.log(token);
         if (!token) {
             return res.status(401).json({
                 message: "User not authenticated",
