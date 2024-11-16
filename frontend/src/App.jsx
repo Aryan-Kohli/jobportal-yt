@@ -15,7 +15,7 @@ import PostJob from "./components/admin/PostJob";
 import Applicants from "./components/admin/Applicants";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
 import Podcast from "./components/Podcast";
-
+import Learn from "./components/Learn";
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -48,6 +48,10 @@ const appRouter = createBrowserRouter([
   {
     path: "/podcast",
     element: <Podcast />,
+  },
+  {
+    path: "/learn",
+    element: <Learn />,
   },
   // admin ke liye yha se start hoga
   {

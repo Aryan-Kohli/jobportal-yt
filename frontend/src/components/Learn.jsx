@@ -2,27 +2,27 @@ import React, { useEffect } from "react";
 import Navbar from "./shared/Navbar";
 
 const videoData = {
-  "Time Management": [
-    "https://www.youtube.com/embed/W8B0KWmv_-Q?si=f0gkPkOjYjfhJpdQ",
-    "https://www.youtube.com/embed/7ax4Tb5G1P4?si=SQMOgLrF3hTP_zZC",
-    "https://www.youtube.com/embed/D74vLgMYOxM?si=BGLbiwULOTQKqoOc",
-    "https://www.youtube.com/embed/w9gwV8cCMaQ?si=Wu6InuRXEWcLR425",
+  "Data Analytics": [
+    "https://www.youtube.com/embed/PSNXoAs2FtQ?si=3avlPsKVgptfiUeV",
+    "https://www.youtube.com/embed/F5v2dRYU5IA?si=Ro_AeTDF4HuL2qES",
+    "https://www.youtube.com/embed/HXV3zeQKqGY?si=C7sp-i7PO3Ai_ttC",
+    "https://www.youtube.com/embed/6cV3OwFrOkk?si=K2XjERqrN2mJBdEI",
   ],
-  "Monetary and Finance": [
-    "https://www.youtube.com/embed/3wBEUuV7BYg?si=CP7BnADPsAUkYpN2",
-    "https://www.youtube.com/embed/Cda-fUJ-GjE?si=Dg30VYMaKFPtPzBA",
-    "https://www.youtube.com/embed/7TWKKww-F30?si=eIzbVFwGGLCe_KYl",
-    "https://www.youtube.com/embed/kw0QVwt7LVI?si=Max1xK3lNSy4jkTW",
+  "Web Development": [
+    "https://www.youtube.com/embed/zJSY8tbf_ys?si=1Eo3LjAZ0IcxzkXJ",
+    "https://www.youtube.com/embed/CgkZ7MvWUAA?si=Okk0Iu3Yo-Gh4oFW",
+    "https://www.youtube.com/embed/qwfE7fSVaZM?si=mPEokxzNkbYXk2x0",
+    "https://www.youtube.com/embed/PWG7NlUDVaA?si=KD5luzKPOk72T5di",
   ],
-  Communication: [
-    "https://www.youtube.com/embed/6-shbSFc48E?si=EzDwUX4q7haoxokZ",
-    "https://www.youtube.com/embed/HAnw168huqA?si=c7sHW2mvW6kBQq0l",
-    "https://www.youtube.com/embed/k1TqbGSQZVE?si=AgekfU78JGjbNVO3",
-    "https://www.youtube.com/embed/HAnw168huqA?si=m0LY_EXrc35tBBrv",
+  Devops: [
+    "https://www.youtube.com/embed/11KT1hPNkY4?si=hthPa-hWxEBt63cu",
+    "https://www.youtube.com/embed/fqMOX6JJhGo?si=yzfzD5WzyN8Z_WQV",
+    "https://www.youtube.com/embed/Zv9MsVSxqXo?si=OXBYmwngsducXmGr",
+    "https://www.youtube.com/embed/hQcFE0RD0cQ?si=x6ZAS2oAASk6FZC5",
   ],
 };
 
-export default function Podcast() {
+export default function Learn() {
   useEffect(() => {
     const hash = window.location.hash.substring(1);
     if (hash) {

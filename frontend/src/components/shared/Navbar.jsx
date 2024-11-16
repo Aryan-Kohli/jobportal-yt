@@ -16,6 +16,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [isDropdownOpen2, setDropdownOpen2] = useState(false);
 
   const logoutHandler = async () => {
     try {
@@ -106,6 +107,45 @@ const Navbar = () => {
                       </li>
                       <li style={{ padding: "5px 0" }}>
                         <Link to="/podcast#Communication">Communication</Link>
+                      </li>
+                    </ul>
+                  )}
+                </li>
+
+                <li
+                  onMouseEnter={() => setDropdownOpen2(true)}
+                  onMouseLeave={() => setDropdownOpen2(false)}
+                  style={{ position: "relative", margin: "0 10px" }}
+                >
+                  <Link
+                    to="/learn"
+                    style={{ display: "flex", alignItems: "center" }}
+                  >
+                    Learn{" "}
+                    <ChevronDown size={16} style={{ marginLeft: "5px" }} />{" "}
+                  </Link>
+                  {isDropdownOpen2 && (
+                    <ul
+                      style={{
+                        position: "absolute",
+                        top: "100%",
+                        left: "0",
+                        backgroundColor: "white",
+                        padding: "10px",
+                        borderRadius: "5px",
+                        boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+                        zIndex: 10,
+                        width: "200px",
+                      }}
+                    >
+                      <li style={{ padding: "5px 0" }}>
+                        <Link to="/learn#Data-Analytics">Data Analytics</Link>
+                      </li>
+                      <li style={{ padding: "5px 0" }}>
+                        <Link to="/learn#Web-Development">Web Development</Link>
+                      </li>
+                      <li style={{ padding: "5px 0" }}>
+                        <Link to="/learn#Devops">Devops</Link>
                       </li>
                     </ul>
                   )}
