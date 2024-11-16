@@ -115,10 +115,10 @@ const Navbar = () => {
                 <li
                   onMouseEnter={() => setDropdownOpen2(true)}
                   onMouseLeave={() => setDropdownOpen2(false)}
-                  style={{ position: "relative", margin: "0 10px" }}
+                  style={{ position: "relative", margin: "0 " }}
                 >
                   <Link
-                    to="/learn"
+                    to="/learn/paid"
                     style={{ display: "flex", alignItems: "center" }}
                   >
                     Learn{" "}
@@ -139,14 +139,14 @@ const Navbar = () => {
                       }}
                     >
                       <li style={{ padding: "5px 0" }}>
-                        <Link to="/learn#Data-Analytics">Data Analytics</Link>
+                        <Link to="/learn/free">Free</Link>
                       </li>
                       <li style={{ padding: "5px 0" }}>
-                        <Link to="/learn#Web-Development">Web Development</Link>
+                        <Link to="/learn/paid">Paid</Link>
                       </li>
-                      <li style={{ padding: "5px 0" }}>
+                      {/* <li style={{ padding: "5px 0" }}>
                         <Link to="/learn#Devops">Devops</Link>
-                      </li>
+                      </li> */}
                     </ul>
                   )}
                 </li>

@@ -33,42 +33,33 @@ export default function Podcast() {
   return (
     <>
       <Navbar />
-      <div
-        style={{
-          backgroundColor: "white",
-          color: "black",
-          padding: "20px 15px",
-        }}
-      >
+      <div className="bg-gradient-to-r from-purple-50 via-purple-100 to-purple-50 text-gray-800 p-5 min-h-screen">
         {Object.entries(videoData).map(([title, links], idx) => (
           <div
             key={idx}
             id={title.replace(/ /g, "-")}
-            className="mb-8"
-            style={{
-              borderRadius: "10px",
-              padding: "20px",
-              backgroundColor: "#f4f4ff",
-            }}
+            className="mb-12 bg-white rounded-xl shadow-lg p-6 border border-purple-200 hover:shadow-2xl transition-shadow duration-300"
           >
             <div className="relative mb-6">
-              <h1 className="text-3xl font-bold text-gray-700 bg-purple-100 p-4 rounded-lg">
+              <h1 className="text-4xl font-bold text-purple-700 bg-purple-100 p-4 rounded-lg shadow-md inline-block">
                 {title.toUpperCase()}
               </h1>
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {links.map((link, index) => (
-                <iframe
+                <div
                   key={index}
-                  width="100%"
-                  height="300"
-                  src={link}
-                  title={`${title} Video ${index + 1}`}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  style={{ margin: "0 auto" }}
-                ></iframe>
+                  className="overflow-hidden rounded-lg border border-purple-300 shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-300"
+                >
+                  <iframe
+                    className="w-full h-56 lg:h-64"
+                    src={link}
+                    title={`${title} Video ${index + 1}`}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
               ))}
             </div>
           </div>

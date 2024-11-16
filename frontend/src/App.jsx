@@ -15,7 +15,8 @@ import PostJob from "./components/admin/PostJob";
 import Applicants from "./components/admin/Applicants";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
 import Podcast from "./components/Podcast";
-import Learn from "./components/Learn";
+import LearnFree from "./components/LearnFree";
+import LearnPaid from "./components/LearnPaid";
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -50,8 +51,12 @@ const appRouter = createBrowserRouter([
     element: <Podcast />,
   },
   {
-    path: "/learn",
-    element: <Learn />,
+    path: "/learn/free",
+    element: <LearnFree />,
+  },
+  {
+    path: "/learn/paid",
+    element: <LearnPaid />,
   },
   // admin ke liye yha se start hoga
   {
